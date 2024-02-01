@@ -12,4 +12,8 @@ router.use("/product", productRouter);
 router.use("/detail", detailRouter);
 router.use("/cart", cartRouter);
 
+const loginRouter = require("./routers/authRouter");
+
+router.use("/login", loginRouter);
+
 module.exports = router;

@@ -26,14 +26,14 @@ export default function Signup() {
   };
 
   return (
-    <div>
-      <h1>Sign up</h1>
+    <div className="h-screen flex flex-col justify-center items-center">
+      <h1 className="text-4xl mb-4 ">Sign up</h1>
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <input
               type="text"
-              className=""
+              className="border rounded-md p-2 mb-1 ml-20"
               {...register("firstname", {
                 required: "Required field",
                 minLength: {
@@ -51,6 +51,8 @@ export default function Signup() {
           </div>
           <div>
             <input
+              type="text"
+              className="border rounded-md p-2 mb-1 ml-20"
               {...register("lastname", {
                 required: "Required field",
                 minLength: {
@@ -69,7 +71,7 @@ export default function Signup() {
           <div>
             <input
               type="email"
-              className=" "
+              className="border rounded-md p-2 mb-1 ml-20"
               {...register("email", {
                 required: "required field",
                 pattern: {
@@ -90,7 +92,7 @@ export default function Signup() {
             <input
               type="password"
               id="password"
-              className=""
+              className="border rounded-md p-2 mb-1 ml-20"
               {...register("password", {
                 required: "required field",
                 pattern: {
@@ -112,7 +114,7 @@ export default function Signup() {
           <div>
             <input
               type="password"
-              className=""
+              className="border rounded-md p-2 mb-1 ml-20"
               {...register("confirmpassword", {
                 required: "required field",
                 validate: (value) =>
@@ -126,14 +128,18 @@ export default function Signup() {
               </p>
             )}
           </div>
+
           <div className="">
             <p className="">I accept the Terms of service and Privacy policy</p>
-            <div className="">
-              <input type="checkbox" onChange={handleCheck} className="" />
-            </div>
+            <input type="checkbox" onChange={handleCheck} className="" />
           </div>
+
           <div>
-            <button type="submit" onClick={!checked}>
+            <button
+              className=" border bg-stone-200 shadow-sm text-grey px-3 py-1 rounded-md  "
+              type="submit"
+              onClick={!checked}
+            >
               Accept
             </button>
           </div>

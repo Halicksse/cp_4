@@ -6,7 +6,7 @@ import Footer from "./components/Nav/Footer";
 function App() {
   const [auth, setAuth] = useState();
   return (
-    <div className="App">
+    <div>
       <NavBar auth={auth} setAuth={setAuth} />
       <Outlet context={{ auth, setAuth }} />
       <Footer />

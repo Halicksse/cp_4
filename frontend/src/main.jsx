@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Products from "./pages/Products";
 import NotFound from "./pages/NotFound";
+import "./tailwind.css";
 
 import App from "./App";
 

@@ -15,6 +15,10 @@ export default function NavBar({ auth, setAuth }) {
           path: `/user/profile/`,
           title: "my admin Account",
         },
+        {
+          path: `/user/profile/`,
+          title: "my admin Account",
+        },
       ];
     } else {
       navLinks = [
@@ -22,10 +26,18 @@ export default function NavBar({ auth, setAuth }) {
           path: `/user/profile/`,
           title: "my Account",
         },
+        {
+          path: `/user/orders/`,
+          title: "my orders",
+        },
       ];
     }
   } else {
     navLinks = [
+      {
+        path: `/products/`,
+        title: "Products",
+      },
       {
         path: "/user/signup",
         title: "Sign up",
@@ -35,26 +47,29 @@ export default function NavBar({ auth, setAuth }) {
         title: "Login",
       },
       {
-        path: `/products/`,
-        title: "Products",
+        path: `/cart/`,
+        title: "Cart",
       },
     ];
   }
 
-  const [page, setPagae] = useState(null);
+  const [page, setPage] = useState(null);
   const handlePageStyle = (e) => {
-    setPagae(e.target.text);
+    setPage(e.target.text);
   };
 
   return (
     <header>
-      <nav>
+      <nav className="bg-stone-200 p-4 md:p-6 lg:p-8 xl:p-10 flex justify-between items-center">
         <NavLink to="/" className="">
-          Just Plann'it
-          <img src={just} className="" alt="logo just plann'it" />
+          <img
+            src={just}
+            className="w-10 h-10 md:w-12 md:h-12 lg:w-50 lg:h-50 xl:w-16 xl:h-16"
+            alt="logo just plann'it"
+          />
         </NavLink>
-        <div className="">
-          <ul className="">
+        <div className="mt-4 md:mt-0 md:ml-4">
+          <ul className="flex space-x-4">
             {navLinks.map((n) =>
               page === n.title ? (
                 <li key={n.title}>
@@ -79,7 +94,7 @@ export default function NavBar({ auth, setAuth }) {
               <li>
                 <button
                   type="button"
-                  className="-4"
+                  className=""
                   onClick={() => {
                     setAuth(undefined);
                     navigate("/");

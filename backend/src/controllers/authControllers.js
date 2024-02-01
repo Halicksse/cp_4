@@ -20,7 +20,6 @@ const login = async (req, res, next) => {
         process.env.APP_SECRET,
         { expiresIn: "1h" }
       );
-      delete user.id;
       delete user.created_at;
       delete user.is_admin;
 

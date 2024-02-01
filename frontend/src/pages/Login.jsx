@@ -1,31 +1,34 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useForm, Controller } from "react-hook-form";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import axios from "axios";
 
-export default function LoginPage() {
-  const { handleSubmit, control } = useForm();
+export default function LoginForm() {
   const { setAuth } = useOutletContext();
   const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/login`,
+        `${import.meta.env.VITE_BACKEND_URL}/login`,
         {
-          method: "post",
+          email: data.email,
+          password: data.password,
+        },
+        {
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: data.email,
-            password: data.password,
-          }),
         }
       );
       if (response.status === 200) {
         const auth = await response.data;
         setAuth(auth);
         navigate("/");
-      } else {
         console.info(response);
       }
     } catch (err) {
@@ -34,34 +37,48 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="">
-      <form className="" onSubmit={handleSubmit(onSubmit)}>
-        <label className="" htmlFor="email">
-          email
-        </label>
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <input className="" type="email" id="email" {...field} />
-          )}
-        />
-
-        <label className="" htmlFor="password">
-          password
-        </label>
-        <Controller
-          name="password"
-          control={control}
-          render={({ field }) => (
-            <input className="" type="password" id="password" {...field} />
-          )}
-        />
-
-        <button className="" type="submit">
-          send
-        </button>
-      </form>
+    <div className="h-screen flex flex-col justify-center items-center">
+      <h1 className="text-center text-4xl mb-4">Log in</h1>
+      <div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex items-center">
+            <input
+              type="email"
+              className="border rounded-md p-2"
+              {...register("email", {
+                required: "Required field",
+              })}
+              placeholder="Email Address"
+            />
+            {errors.email?.message && (
+              <p role="alert" className="">
+                {errors.email.message || "Required field"}
+              </p>
+            )}
+          </div>
+          <div>
+            <input
+              type="password"
+              className="border rounded-md p-2"
+              {...register("password", {
+                required: "Required field",
+              })}
+              placeholder="Password"
+            />
+            {errors.password?.message && (
+              <p role="alert" className="">
+                {errors.password.message || "Required field"}
+              </p>
+            )}
+          </div>
+          <button
+            className=" border bg-stone-200 shadow-sm text-grey px-3 py-1 rounded-md ml-20"
+            type="submit"
+          >
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
