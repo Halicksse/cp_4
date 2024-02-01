@@ -20,10 +20,10 @@ class ProductManager extends AbstractManager {
   }
   // The C of CRUD - Create operation
 
-  async create(name, description, price, stock) {
+  async create(name, description, price) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} ( name, description, price, stock) values (?, ?, ?, ?)`,
-      [name, description, price, stock]
+      `INSERT INTO ${this.table} ( name, description, price ) values (?, ?, ?)`,
+      [name, description, price]
     );
     return result;
   }
@@ -32,8 +32,8 @@ class ProductManager extends AbstractManager {
 
   async update(name, description, price, stock, id) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET name = ?, description =?, price = ?, stock=?  WHERE id = ?`,
-      [name, description, price, stock, id]
+      `UPDATE ${this.table} SET name = ?, description =?, price = ?  WHERE id = ?`,
+      [name, description, price, id]
     );
     return result.affectedRows;
   }

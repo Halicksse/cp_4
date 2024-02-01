@@ -31,14 +31,9 @@ const read = async (req, res, next) => {
 };
 
 const add = async (req, res, next) => {
-  const { name, description, price, stock } = req.body;
+  const { name, description, price } = req.body;
   try {
-    const newProduct = await tables.user.create(
-      name,
-      description,
-      price,
-      stock
-    );
+    const newProduct = await tables.user.create(name, description, price);
     res.status(201).json({
       id: newProduct.insertId,
       message: "user was created with success",
@@ -49,17 +44,11 @@ const add = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  const { name, description, price, stock } = req.body;
+  const { name, description, price } = req.body;
   const id = parseInt(req.params.id, 10);
 
   try {
-    const result = await tables.product.update(
-      name,
-      description,
-      price,
-      stock,
-      id
-    );
+    const result = await tables.product.update(name, description, price, id);
     if (result === 0) {
       res.status(404).json({ message: "product does not exist" });
     } else {

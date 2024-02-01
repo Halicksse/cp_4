@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS user (
 );
 
 CREATE TABLE IF NOT EXISTS product (
-    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, price DECIMAL(10, 2) NOT NULL, stock INT NULL
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, price DECIMAL(10, 2) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS cart (
@@ -40,23 +40,24 @@ VALUES (
 
 INSERT INTO
     product (
-        name, description, price, stock
+        name, description, price
     )
 VALUES (
-        'Digital Planner 2023', 'Planner for the year 2023 with digital features', 19.99, 100
+        'Calendar 2024', 'Calendar for the year 2024', 5.99
     ),
     (
-        'Fitness Tracker', 'Digital planner for tracking fitness goals', 14.99, 200
+        'Weekly Planner', 'Digital planner for weeks organization', 14.99
     ),
     (
-        'Meal Planner', 'Digital planner for organizing weekly meals', 9.99, 150
+        'Meal Planner', 'Digital planner for organizing weekly meals', 9.99
     ),
     (
-        'Budget Tracker', 'Digital planner for tracking expenses and budgeting', 12.99, 120
+        'Daily Planner', 'Digital planner for organizing your days', 17.99
     ),
     (
-        'Travel Planner', 'Digital planner for organizing travel itineraries', 17.99, 80
-    );
+        'To Do List', 'Digital planner for organizing daily tasks', 4.99
+    )
+    ;
 
 -- Assuming user_id and product_id are already populated
 INSERT INTO
